@@ -1,0 +1,54 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/homenavbar.ejs') %>
+
+<body>
+
+    <div class="container">
+
+        <!-- jumbotron pode ser encontrada na doc do bootstrap -->
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo ao blog BPRESS </h1>
+            <p class="lead"> Somente um simples blog pessoa do Pato</p>
+            <hr class="my-4">
+            <p>Esta somente sendo criado para estudo</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais sobre</a>
+            </p>
+          </div>
+
+        <hr>
+
+        <% articles.forEach(function(article){ %>
+          
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <div class="card-body">
+                    <a href='/<%= article.slug %>' class="btn btn-success"> ler artigo</a>
+
+
+                </div>
+
+            </div>
+
+
+        <% }) %>
+
+
+        <div class="row" >
+            <div class="col col-12">
+
+                <a style="float: right" href="/articles/page/2">Next>></a>
+            </div>
+            <hr>
+            
+        </div>
+        <hr>
+    </div>
+
+
+
+</body>
+
+<%- include('partials/footer.ejs') %>

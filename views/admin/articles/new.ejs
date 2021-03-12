@@ -1,0 +1,48 @@
+<%- include('../../partials/header.ejs')%>
+<%- include('../../partials/navbar.ejs')%>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Novo artigo</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/articles/save">
+                <input class="form-control" type="text" name="title1" placeholder="Defina o titulo do Artigo">
+                <BR>
+                <textarea class="form-control" placeholder="Escreve o artigo" name="body1" id="articles"></textarea>
+                <label>Categorias</label>
+  
+                <!-- select faz uma lista com setinhas -->
+                <select name="category1" class='form-control'> 
+                    <% categories.forEach(function(category){ %>
+                        
+                        <!-- as opçoes dentro sao o title -->
+                        <!-- passa o valor da categoria -->
+                        <option value="<%= category.id %>"><%= category.title %></option> 
+
+                    <% }) %>    
+                </select>
+
+                <button class="btn btn-success">Confirmar</button>
+            </form>
+        </div>
+    </div>
+</div> 
+
+
+<%- include('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    //fala pro tinymce melhor essa textarea
+    //# +   o id da text area
+    tinymce.init({
+        language: 'pt_BR',
+        selector: "#articles" ,
+        plugins: [
+            'advlist autiolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emticons'
+        ] //plugins sao separados por espaço, olhar na documentao do tinymce para ver mais sobre
+    })
+</script>

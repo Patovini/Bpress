@@ -1,0 +1,54 @@
+<%- include('../../partials/header.ejs')%>
+<%- include('../../partials/navbar.ejs')%>
+<div class="container">
+    <hr>
+    <h1>Categorias home</h1>
+    <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Açoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- categories esta setado no controller  -->
+
+            <% categories.forEach(function(category){ %>
+                <tr>
+                    <th><%= category.id %></th>
+                    <th><%= category.title %></th>
+                    <th><%= category.slug %></th>
+                    <th>
+                        <a class="btn btn-warning" href="/admin/categories/edit/<%= category.id %>">Editar</a>
+
+                        <form method="POST" action="/admin/categories/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                            <input type="hidden" name="id1" value="<%= category.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </th>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</div>
+
+<%- include('../../partials/footer.ejs')%>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault(); // impede que seja submetido
+        
+        //confirm é um elemento do js, onde manda um popup com sim ou nao
+        var decision = confirm("Deseja excluir essa categoria?");
+        if(decision){
+            form.submit(); // Se sim ele vai puxar o form acima que vai deletar
+        }else{
+            
+        }
+    }
+</script>
